@@ -19,6 +19,9 @@ enum custom_keycodes {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
+        //tap Enter, then reset the keyboard
+        //use with a script on workstation that sleeps before
+        //uploading new firmware
         case RESETSCRIPT:
             if (record->event.pressed) {
                 tap_code(KC_ENTER);
