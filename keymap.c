@@ -24,6 +24,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         //uploading new firmware
         case RESETSCRIPT:
             if (record->event.pressed) {
+                tap_code(KC_UP);
                 tap_code(KC_ENTER);
                 reset_keyboard();
             } else {
@@ -47,10 +48,14 @@ void matrix_init_user() {
 uint32_t layer_state_set_user(uint32_t state) {
     switch (biton32(state)) {
         case _META:
+            //doesn't work..may need MASSDROP_CONFIGURATOR to do this
+            //rgb_matrix_set_color(0, 0xFF, 0xFF, 0xFF);
             rgblight_mode_noeeprom(3);
             rgb_matrix_sethsv_noeeprom(HSV_MAGENTA);
             break;
         default: //  for any other layers, or the default layer
+            //doesn't work..may need MASSDROP_CONFIGURATOR to do this
+            //rgb_matrix_set_color(0, 0xFF, 0x00, 0xFF);
             rgblight_mode_noeeprom(default_mode);
             rgb_matrix_sethsv_noeeprom(HSV_MAGENTA);
             break;
