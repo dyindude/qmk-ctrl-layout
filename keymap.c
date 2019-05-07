@@ -12,6 +12,24 @@
 #define _BASE 0
 #define _META 1
 
+
+enum custom_keycodes {
+    RESETSCRIPT = SAFE_RANGE,
+};
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case RESETSCRIPT:
+            if (record->event.pressed) {
+                tap_code(KC_ENTER);
+                reset_keyboard();
+            } else {
+            }
+            break;
+    }
+    return true;
+}
+
 uint32_t default_mode = 22;
 
 //default 
