@@ -1,0 +1,7 @@
+//layouts..using QMK configurator to generate these for now
+const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+{{- $length := len .Layers -}}
+{{ range $index, $layer := .Layers }}{{ if $index }},{{ end }}
+    [{{label $index}}] = LAYOUT({{ StringsJoin $layer "," }})
+{{- end }}
+};
