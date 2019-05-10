@@ -9,14 +9,18 @@
 // 21-24 = Nightrider
 // 25 = Christmas
 // 26-30 = Static Gradient
-#define _BASE 0
-#define _META 1
-#define _FUNC 2
 
+enum layers {
+    _BASE = 0,
+    _META,
+    _FUNC,
+};
 
 enum custom_keycodes {
     RESETSCRIPT = SAFE_RANGE,
 };
+
+uint32_t default_mode = 22; //make some of our own keycodes for cycling default layout
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
@@ -35,8 +39,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     return true;
 }
 
-uint32_t default_mode = 22;
-
 //default 
 void matrix_init_user() {
     rgblight_mode_noeeprom(default_mode);
@@ -51,13 +53,13 @@ uint32_t layer_state_set_user(uint32_t state) {
         case _META:
             //doesn't work..may need MASSDROP_CONFIGURATOR to do this
             //rgb_matrix_set_color(0, 0xFF, 0xFF, 0xFF);
-            rgblight_mode_noeeprom(1);
+            rgblight_mode_noeeprom(2);
             rgb_matrix_sethsv_noeeprom(HSV_CYAN);
             break;
         case _FUNC:
             //doesn't work..may need MASSDROP_CONFIGURATOR to do this
             //rgb_matrix_set_color(0, 0xFF, 0xFF, 0xFF);
-            rgblight_mode_noeeprom(1);
+            rgblight_mode_noeeprom(2);
             rgb_matrix_sethsv_noeeprom(HSV_ORANGE);
             break;
         default: //  for any other layers, or the default layer
