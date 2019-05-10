@@ -11,6 +11,7 @@
 // 26-30 = Static Gradient
 #define _BASE 0
 #define _META 1
+#define _FUNC 2
 
 
 enum custom_keycodes {
@@ -50,8 +51,14 @@ uint32_t layer_state_set_user(uint32_t state) {
         case _META:
             //doesn't work..may need MASSDROP_CONFIGURATOR to do this
             //rgb_matrix_set_color(0, 0xFF, 0xFF, 0xFF);
-            rgblight_mode_noeeprom(3);
-            rgb_matrix_sethsv_noeeprom(HSV_MAGENTA);
+            rgblight_mode_noeeprom(1);
+            rgb_matrix_sethsv_noeeprom(HSV_CYAN);
+            break;
+        case _FUNC:
+            //doesn't work..may need MASSDROP_CONFIGURATOR to do this
+            //rgb_matrix_set_color(0, 0xFF, 0xFF, 0xFF);
+            rgblight_mode_noeeprom(1);
+            rgb_matrix_sethsv_noeeprom(HSV_ORANGE);
             break;
         default: //  for any other layers, or the default layer
             //doesn't work..may need MASSDROP_CONFIGURATOR to do this

@@ -1,10 +1,12 @@
 package main
 
+//need to account for ANY( keyword)
 import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"os"
+	"regexp"
 	"strings"
 	"text/template"
 )
@@ -27,7 +29,12 @@ func main() {
 
 	json.Unmarshal(byteValue, &keymap)
 	tmpl, err := template.New("keymap.tmpl").
-		Funcs(template.FuncMap{"StringsJoin": strings.Join}).
+		Funcs(template.FuncMap{"StringsJoin": func(s []string) string {
+			o := strings.Join(s, ", ")
+			re := regexp.MustCompile(`ANY\((.*?)\)`)
+			o = re.ReplaceAllString(o, `$1`)
+			return o
+		}}).
 		Funcs(template.FuncMap{"label": func(n int) string { return labels[n] }}).
 		ParseFiles("keymap.tmpl")
 	if err != nil {
