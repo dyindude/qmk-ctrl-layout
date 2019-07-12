@@ -21,7 +21,7 @@ node('master') {
   stage('Run build?') {
     qmk.withRun {
       sh 'pwd'
-      sh 'make massdrop/ctrl:testlayout'
+      sh 'cd /qmk_firmware && make massdrop/ctrl:testlayout'
     }
   }
 }
