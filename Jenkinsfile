@@ -13,10 +13,12 @@ node {
 //    sh 'ls -Alh qmk-firmware/keyboards/massdrop/ctrl/keymaps'
 //  }
   stage('Build qmk_firmware image') {
-    qmk = docker.build("local/qmk_firmware", "-f qmk-firmware/Dockerfile .")
+    docker.build("local/qmk_firmware", "-f qmk-firmware/Dockerfile .")
   }
+  stage('Build qmk_keymaps image') {
+    qmk = docker.build("local/qmk_keymaps")
   stage('Run build?') {
-    qmk.inside("-v ${WORKSPACE}/keymaps/testlayout:/qmk-firmware/keyboards/massdrop/ctrl/keymaps/testlayout") {
+    qmk.inside {
       sh 'ls -Alh /qmk-firmware/keyboards/massdrop/ctrl/keymaps'
       sh 'make massdrop/ctrl:testlayout'
     }
