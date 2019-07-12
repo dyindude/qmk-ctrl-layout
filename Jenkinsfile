@@ -1,4 +1,5 @@
 node {
+  checkout scm
   stage('Clone qmk_firmware') {
     dir('qmk-firmware') {
       git url: 'https://github.com/qmk/qmk_firmware.git'
