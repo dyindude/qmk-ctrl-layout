@@ -15,13 +15,7 @@ node('master') {
   stage('Build qmk_firmware image') {
     docker.build("local/qmk_firmware", "-f qmk-firmware/Dockerfile qmk-firmware")
   }
-  stage('Build qmk_keymaps image') {
+  stage('Build qmk_keymaps image (builds keymaps)') {
     qmk = docker.build("local/qmk_keymaps")
-  }
-  stage('Run build?') {
-    qmk.withRun("-u root") {
-      sh 'pwd'
-      sh 'cd /qmk_firmware && make massdrop/ctrl:testlayout'
-    }
   }
 }
