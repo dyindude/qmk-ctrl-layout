@@ -1,4 +1,5 @@
 node {
+  def qmk
   checkout scm
   stage('Clone qmk_firmware') {
     dir('qmk-firmware') {
@@ -12,7 +13,7 @@ node {
 //    sh 'ls -Alh qmk-firmware/keyboards/massdrop/ctrl/keymaps'
 //  }
   stage('Build qmk_firmware image') {
-    def qmk = docker.build("local/qmk_firmware", "-f qmk-firmware/Dockerfile .")
+    qmk = docker.build("local/qmk_firmware", "-f qmk-firmware/Dockerfile .")
   }
   stage('Run build?') {
     qmk.inside("-v ${WORKSPACE}/keymaps/testlayout:/qmk-firmware/keyboards/massdrop/ctrl/keymaps/testlayout") {
