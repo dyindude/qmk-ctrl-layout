@@ -1,4 +1,4 @@
-node {
+node('master') {
   def qmk
   checkout scm
   stage('Clone qmk_firmware') {
