@@ -1,5 +1,4 @@
 node('master') {
-  def qmk
   checkout scm
   stage('Clone qmk_firmware') {
     dir('qmk-firmware') {
@@ -16,6 +15,6 @@ node('master') {
     docker.build("local/qmk_firmware", "-f qmk-firmware/Dockerfile qmk-firmware")
   }
   stage('Build qmk_keymaps image (builds keymaps)') {
-    qmk = docker.build("local/qmk_keymaps")
+    docker.build("local/qmk_keymaps")
   }
 }
