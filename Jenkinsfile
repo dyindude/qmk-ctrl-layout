@@ -19,9 +19,9 @@ node {
     qmk = docker.build("local/qmk_keymaps")
   }
   stage('Run build?') {
-    qmk.inside {
+    qmk.withRun {
       sh 'pwd'
-      sh 'cd /qmk_firmware && make massdrop/ctrl:testlayout'
+      sh 'make massdrop/ctrl:testlayout'
     }
   }
 }
