@@ -4,6 +4,6 @@ node {
   }
 
   stage('Build qmk_firmware image') {
-    docker.build("local/qmk_firmware", "-f qmk_firmware/Dockerfile .")
+    docker.build("local/qmk_firmware", "-f qmk-firmware/Dockerfile .")
   }
 }
