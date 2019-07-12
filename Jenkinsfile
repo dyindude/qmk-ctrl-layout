@@ -17,6 +17,7 @@ node {
   }
   stage('Build qmk_keymaps image') {
     qmk = docker.build("local/qmk_keymaps")
+  }
   stage('Run build?') {
     qmk.inside {
       sh 'ls -Alh /qmk-firmware/keyboards/massdrop/ctrl/keymaps'
