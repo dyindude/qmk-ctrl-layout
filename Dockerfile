@@ -1,3 +1,3 @@
 FROM local/qmk_firmware
 
-COPY keymaps /qmk-firmware/keyboards/massdrop/ctrl/keymaps
+COPY keymaps /qmk_firmware/keyboards/massdrop/ctrl/keymaps
