@@ -20,7 +20,6 @@ node {
   }
   stage('Run build?') {
     qmk.inside {
-      sh 'ls -Alh /qmk-firmware/keyboards/massdrop/ctrl/keymaps'
       sh 'make massdrop/ctrl:testlayout'
     }
   }
