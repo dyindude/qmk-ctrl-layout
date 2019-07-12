@@ -13,7 +13,7 @@ node {
 //    sh 'ls -Alh qmk-firmware/keyboards/massdrop/ctrl/keymaps'
 //  }
   stage('Build qmk_firmware image') {
-    docker.build("local/qmk_firmware", "-f qmk-firmware/Dockerfile .")
+    docker.build("local/qmk_firmware", "-f qmk-firmware/Dockerfile qmk-firmware")
   }
   stage('Build qmk_keymaps image') {
     qmk = docker.build("local/qmk_keymaps")
