@@ -85,7 +85,7 @@ uint32_t layer_state_set_user(uint32_t state) {
             } else {
                 rgb_matrix_sethsv_noeeprom(HSV_PINK);
             }
-            rgblight_sethsv_at(HSV_MAGENTA, 0);
+            //rgblight_sethsv_at(HSV_MAGENTA, 0);
             break;
     }
     return state;
