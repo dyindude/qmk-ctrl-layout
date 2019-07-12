@@ -18,6 +18,7 @@ node {
   stage('Run build?') {
     qmk.inside("-v ${WORKSPACE}/keymaps/testlayout:/qmk-firmware/keyboards/massdrop/ctrl/keymaps/testlayout") {
       sh 'ls -Alh /qmk-firmware/keyboards/massdrop/ctrl/keymaps'
+      sh 'make massdrop:testlayout'
     }
   }
 }
