@@ -8,10 +8,10 @@ node {
   stage('Build qmk_firmware image') {
     docker.build("local/qmk_firmware", "-f qmk-firmware/Dockerfile .")
   }
-  stage('symlink our layouts') {
-    sh 'find layouts -type d -exec ln -s {} qmk-firmware/keyboards/massdrop/ctrl/layouts/. \\;'
+  stage('symlink our keymaps') {
+    sh 'find keymaps -type d -exec ln -s {} qmk-firmware/keyboards/massdrop/ctrl/keymaps/. \\;'
   }
-  stage('ls layouts folder') {
-    sh 'ls -Alh qmk-firmware/keyboards/massdrop/ctrl/layouts'
+  stage('ls keymaps folder') {
+    sh 'ls -Alh qmk-firmware/keyboards/massdrop/ctrl/keymaps'
   }
 }
