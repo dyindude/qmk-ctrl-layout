@@ -16,7 +16,7 @@ node('master') {
     docker.build("local/qmk_firmware", "-f qmk-firmware/Dockerfile qmk-firmware")
   }
   stage('Build qmk_keymaps image (builds keymaps)') {
-    qmk = docker.build("local/qmk_keymaps")
+    qmk = docker.build("local/qmk_firmware:local_keymaps")
   }
   stage('copy .bin files') {
     qmk.inside {
