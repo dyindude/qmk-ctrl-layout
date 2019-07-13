@@ -20,7 +20,7 @@ node('master') {
   }
   stage('copy .bin files') {
     qmk.inside {
-      sh 'mkdir -p /data/build/${JOB_NAME} && cp /*.bin /data/build/${JOB_NAME}/. -v'
+      sh 'mkdir -p /data/build/${JOB_NAME} && rm /data/build/${JOB_NAME}/* && cp /*.bin /data/build/${JOB_NAME}/. -v'
     }
   }
 }
