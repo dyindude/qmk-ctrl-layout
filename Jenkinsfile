@@ -22,4 +22,5 @@ node('master') {
     qmk.inside {
       sh 'cp /*.bin . -v'
     }
+  }
 }
