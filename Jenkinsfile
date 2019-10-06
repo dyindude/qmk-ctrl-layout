@@ -6,14 +6,11 @@ node('master') {
       git url: 'https://github.com/qmk/qmk_firmware.git'
     }
   }
-//  stage('symlink our keymaps') {
-//    sh 'find ${WORKSPACE}/keymaps ! -path ${WORKSPACE}/keymaps -type d -exec ln -s {} qmk-firmware/keyboards/massdrop/ctrl/keymaps/. \\;'
-//  }
-//  stage('ls keymaps folder') {
-//    sh 'ls -Alh qmk-firmware/keyboards/massdrop/ctrl/keymaps'
-//  }
+  stage('copy keymaps') {
+    sh 'find ${WORKSPACE}/keymaps ! -path ${WORKSPACE}/keymaps -type d -exec cp -rv {} qmk-firmware/keyboards/massdrop/ctrl/keymaps/. \\;'
+  }
   stage('Build qmk_firmware image') {
-    docker.build("local/qmk_firmware", "-f qmk-firmware/Dockerfile qmk-firmware")
+    qmk = docker.build("local/qmk_firmware", "-f qmk-firmware/Dockerfile qmk-firmware")
   }
   stage('Build qmk_keymaps image (builds keymaps)') {
     qmk = docker.build("local/qmk_firmware:local_keymaps")
