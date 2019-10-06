@@ -15,9 +15,7 @@ node('master') {
   }
   stage('Build/deliver layouts') {
     qmk.inside {
-      sh 'pwd'
-      sh 'ls'
-      sh 'make massdrop/ctrl:testlayout'
+      sh 'cd qmk-firmware && make massdrop/ctrl:testlayout'
       sh 'make massdrop/ctrl:dyindude_md'
       sh 'mkdir -p /data/build/${JOB_NAME} && rm /data/build/${JOB_NAME}/* && cp /*.bin /data/build/${JOB_NAME}/. -v'
     }
