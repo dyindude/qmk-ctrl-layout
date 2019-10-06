@@ -1,4 +1,4 @@
 FROM local/qmk_firmware
 
-RUN make massdrop/ctrl:dyindude_md && \
+RUN make massdrop/ctrl:testlayout && \
     cp *.bin /
