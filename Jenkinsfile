@@ -9,6 +9,7 @@ node('master') {
   }
   stage('copy keymaps') {
     sh 'find ${WORKSPACE}/keymaps ! -path ${WORKSPACE}/keymaps -type d -exec cp -rv {} qmk-firmware/keyboards/massdrop/ctrl/keymaps/. \\;'
+    sh 'cd qmk-firmware && git checkout e83e3165559eba17a965541726b5c09112bab9d5'
   }
   stage('Build qmk_firmware image') {
     docker.build("local/qmk_firmware", "-f qmk-firmware/Dockerfile qmk-firmware")
