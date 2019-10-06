@@ -2,6 +2,7 @@ node('master') {
   def qmk
   checkout scm
   stage('Clone qmk_firmware') {
+    sh 'rm -rf qmk-firmware'
     dir('qmk-firmware') {
       git url: 'https://github.com/qmk/qmk_firmware.git'
     }
