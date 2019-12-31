@@ -10,6 +10,10 @@
 // 25 = Christmas
 // 26-30 = Static Gradient
 
+bool spam_enter;
+uint16_t spam_timer = false;
+uint16_t spam_interval = 1000; // (1000ms == 1s)
+
 enum layers {
     _BASE = 0,
     _META,
@@ -18,6 +22,7 @@ enum layers {
 
 enum custom_keycodes {
     RESETSCRIPT = SAFE_RANGE,
+    KC_EEEE
 };
 
 uint32_t default_mode = 22; //make some of our own keycodes for cycling default layout
@@ -35,10 +40,23 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             } else {
             }
             break;
+        case KC_EEEE: // Toggle's if we hit "ENTER" or "BACKSPACE" to input macros
+            if (record->event.pressed) { 
+                spam_enter ^= 1; 
+                spam_timer = timer_read();
+            }
+            return false;
+            break;
     }
     return true;
 }
 
+void matrix_scan_user(void) {
+    if (spam_enter && timer_elapsed(spam_timer) >= spam_interval) {
+        spam_timer = timer_read();
+        SEND_STRING(SS_TAP(X_ENTER));
+    }
+}
 //default 
 void matrix_init_user() {
     rgblight_mode_noeeprom(default_mode);
