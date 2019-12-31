@@ -12,7 +12,7 @@
 
 bool spam_enter;
 uint16_t spam_timer = false;
-uint16_t spam_interval = 1000; // (1000ms == 1s)
+uint16_t spam_interval = 250; // (1000ms == 1s)
 
 enum layers {
     _BASE = 0,
