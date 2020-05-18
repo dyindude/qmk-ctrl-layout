@@ -14,8 +14,8 @@ node('master') {
   }
   stage('Build/deliver layouts') {
     qmk.inside {
-      sh 'cd qmk_firmware && git checkout e83e3165559eba17a965541726b5c09112bab9d5 && sed -i "s/wait_us(1)/wait_us(20)/" keyboards/massdrop/ctrl/matrix.c && sed -i "s/DEBOUNCE 5/DEBOUNCE 20/" keyboards/massdrop/ctrl/config.h && make massdrop/ctrl:testlayout'
-      sh 'cd qmk_firmware && git reset --hard && git checkout master && sed -i "s/wait_us(1)/wait_us(20)/" keyboards/massdrop/ctrl/matrix.c && sed -i "s/DEBOUNCE 5/DEBOUNCE 20/" keyboards/massdrop/ctrl/config.h && make massdrop/ctrl:dyindude_md'
+      sh 'cd qmk_firmware && git checkout e83e3165559eba17a965541726b5c09112bab9d5 && sed -i "s/wait_us(1)/wait_us(30)/" keyboards/massdrop/ctrl/matrix.c && sed -i "s/DEBOUNCE 5/DEBOUNCE 10/" keyboards/massdrop/ctrl/config.h && make massdrop/ctrl:testlayout'
+      sh 'cd qmk_firmware && git reset --hard && git checkout master && sed -i "s/wait_us(1)/wait_us(30)/" keyboards/massdrop/ctrl/matrix.c && sed -i "s/DEBOUNCE 5/DEBOUNCE 10/" keyboards/massdrop/ctrl/config.h && make massdrop/ctrl:dyindude_md'
       sh 'mkdir -p /data/build/${JOB_NAME} && rm -f /data/build/${JOB_NAME}/* && cp qmk_firmware/*.bin /data/build/${JOB_NAME}/. -v'
     }
   }
