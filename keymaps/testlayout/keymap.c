@@ -97,7 +97,8 @@ uint32_t layer_state_set_user(uint32_t state) {
         default: //  for any other layers, or the default layer
             //doesn't work..may need MASSDROP_CONFIGURATOR to do this
             //rgb_matrix_set_color(0, 0xFF, 0x00, 0xFF);
-            rgblight_mode_noeeprom(select_random_mode()); //example selecting random mode
+            //rgblight_mode_noeeprom(select_random_mode()); //example selecting random mode
+            rgblight_mode_noeeprom(default_mode); //we'll just reset the default mode for now
             if (rand_min_max(0,1)){
                 rgb_matrix_sethsv_noeeprom(HSV_MAGENTA);
             } else {
